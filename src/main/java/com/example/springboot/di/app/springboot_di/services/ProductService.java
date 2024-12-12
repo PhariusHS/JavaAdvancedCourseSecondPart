@@ -3,13 +3,25 @@ package com.example.springboot.di.app.springboot_di.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.example.springboot.di.app.springboot_di.models.Product;
-import com.example.springboot.di.app.springboot_di.repositories.ProductRepository;
+import com.example.springboot.di.app.springboot_di.repositories.IProductRepository;
 
-public class ProductService {
 
-    private ProductRepository productRepository = new ProductRepository();
 
+@Service
+public class ProductService implements IProductService {
+
+
+    private final IProductRepository productRepository;
+
+    public ProductService(IProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+
+    @Override   
     public List<Product> findAll() {
         return productRepository.findAll().stream().map(product -> {
             
@@ -22,6 +34,8 @@ public class ProductService {
 
     }
 
+
+    @Override   
     public Product findById(Long id) {
 
         return productRepository.findById(id);

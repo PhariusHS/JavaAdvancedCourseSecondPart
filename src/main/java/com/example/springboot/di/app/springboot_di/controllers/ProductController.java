@@ -15,16 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api")
 public class ProductController {
 
+    
+    private final ProductService productService;
+
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
     @GetMapping("")
     public List<Product> getAllProducts() {
-        ProductService productService = new ProductService();
 
         return productService.findAll();
     }
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
-        ProductService productService = new ProductService();
 
         return productService.findById(id);
     }

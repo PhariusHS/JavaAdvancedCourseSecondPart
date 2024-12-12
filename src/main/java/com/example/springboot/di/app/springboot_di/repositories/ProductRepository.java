@@ -3,9 +3,13 @@ package com.example.springboot.di.app.springboot_di.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.springboot.di.app.springboot_di.models.Product;
 
-public class ProductRepository {
+
+@Repository
+public class ProductRepository implements IProductRepository {
 
    private List<Product> dataList;
 
@@ -17,14 +21,16 @@ public class ProductRepository {
 
     }
 
-
+    @Override
     public List<Product> findAll(){
         return dataList;
     }
 
-
+    @Override
     public Product findById(Long id){
         return dataList.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
     }
 
+
+   
 }

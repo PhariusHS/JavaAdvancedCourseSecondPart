@@ -1,5 +1,7 @@
 package com.example.springboot.di.app.springboot_di.models;
 
+
+
 public class Product {
 
     private Long id;
